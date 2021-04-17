@@ -1,23 +1,24 @@
 package net.astercrono.gameoflife;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class SeedGenerator {
-    public static void main(String[] args) {
-        int width = 200;
-        int height = 130;
-
-        StringBuilder seed = new StringBuilder();
-
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
-                if (Math.random() > 0.5) {
-                    seed.append("0");
-                } else {
-                    seed.append("1");
-                }
+    public static List<List<Boolean>> generateSeed(int rows, int cols) {
+    	List<List<Boolean>> cellRows = new ArrayList<>(rows);
+    	Random random = new Random();
+    	
+         for (int r = 0; r < rows; r++) {
+        	List<Boolean> cellCols = new ArrayList<>();
+        	
+            for (int c = 0; c < cols; c++) {
+            	cellCols.add(random.nextBoolean());
             }
-            seed.append("\n");
+            
+            cellRows.add(cellCols);
         }
-
-        System.out.println(seed);
+         
+         return cellRows;
     }
 }
