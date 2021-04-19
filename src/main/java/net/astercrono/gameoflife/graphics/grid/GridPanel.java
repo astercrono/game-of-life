@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import net.astercrono.gameoflife.graphics.ComponentWrapper;
@@ -80,17 +81,28 @@ public class GridPanel implements ComponentWrapper<JPanel> {
     }
 
     private void configureBlocks() {
+    	int renderBlockRows = panel.getWidth() / blockSize;
+    	int renderBlockColumns = panel.getHeight() / blockSize;
+    	
+    	if (rows > renderBlockRows) {
+    		renderBlockRows = rows;
+    	}
+    	
+    	if (columns > renderBlockColumns) {
+    		renderBlockColumns = columns;
+    	}
+    	
         if (blocks == null) {
-            blocks = new ArrayList<List<GridBlock>>(rows);
+            blocks = new ArrayList<List<GridBlock>>(renderBlockRows);
         }
 
         int x = 0;
         int y = 0;
 
-        for (int r = 0; r < rows; r++) {
-            List<GridBlock> blockRow = new ArrayList<>(columns);
+        for (int r = 0; r < renderBlockRows; r++) {
+            List<GridBlock> blockRow = new ArrayList<>(renderBlockColumns);
 
-            for (int c = 0; c < columns; c++) {
+            for (int c = 0; c < renderBlockColumns; c++) {
                 GridBlock block = new GridBlock(blockSize, x, y);
                 blockRow.add(block);
 
