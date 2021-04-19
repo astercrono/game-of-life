@@ -7,10 +7,10 @@ import java.util.List;
 
 import net.astercrono.gameoflife.seed.model.LoadedSeed;
 
-public class FileSeedReader implements SeedLoader {
+public class FileSeedLoader implements SeedLoader {
 	private File file;
 	
-	public FileSeedReader(File file) {
+	public FileSeedLoader(File file) {
 		this.file = file;
 	}
 	

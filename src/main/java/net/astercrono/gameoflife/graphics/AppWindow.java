@@ -21,7 +21,7 @@ import net.astercrono.gameoflife.life.LifeRunner;
 import net.astercrono.gameoflife.life.ThreadedLifeRunner;
 import net.astercrono.gameoflife.renderer.AwtGridPanelLifeRenderer;
 import net.astercrono.gameoflife.renderer.LifeRenderer;
-import net.astercrono.gameoflife.seed.FileSeedReader;
+import net.astercrono.gameoflife.seed.FileSeedLoader;
 import net.astercrono.gameoflife.seed.RandomSeedLoader;
 import net.astercrono.gameoflife.seed.model.LoadedSeed;
 
@@ -122,7 +122,7 @@ public class AppWindow implements MenuHandler, LifeCycleListener {
 		int fileState = fileChooser.showOpenDialog(frame);
 		if (fileState == JFileChooser.APPROVE_OPTION) {
 			File file = fileChooser.getSelectedFile();
-			LoadedSeed seed = new FileSeedReader(file).loadSeed();
+			LoadedSeed seed = new FileSeedLoader(file).loadSeed();
 
 			if (seed.hasError()) {
 				JOptionPane.showMessageDialog(frame, "Error loading seed file.");
